@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UstaTop — Ustani oson toping</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <a href="#home" class="logo">
+        <div class="logo-icon">🔧</div>
+        <div>
+            <h2>UstaTop</h2>
+            <span>Ustani oson toping</span>
+        </div>
+    </a>
+
+    <nav class="nav" id="mainNav"></nav>
+
+    <div class="header-right">
+        <button class="theme-button" onclick="toggleTheme()" title="Dark mode">🌙</button>
+        <div id="notificationBox" class="notification-box" style="display:none">
+            <button class="notification-button" onclick="toggleNotifications()" title="Bildirishnomalar">
+                🔔<span id="notificationCount" class="notification-count">0</span>
+            </button>
+            <div id="notificationPanel" class="notification-panel"></div>
+        </div>
+        <span id="authButtons"><button class="login-button" onclick="openLogin()">Kirish</button>
+        <button class="register-button" onclick="openRegister()">Ro'yxatdan o'tish</button></span>
+        <div id="userBox" class="user-box" style="display:none"></div>
+    </div>
+</header>
+
+<main>
+
+    <!-- HOME -->
+    <section class="page-section home" id="home">
+        <div class="home-content">
+            <div class="home-left">
+                <span class="badge">⭐ Ishonchli ustalar platformasi</span>
+
+                <h1>Uyingizga kerakli <span>ustani</span> oson toping</h1>
+
+                <p>
+                    Elektrik, santexnik, tozalovchi, remont ustasi va boshqa
+                    mutaxassislarni bir joydan toping.
+                </p>
+
+                <div class="home-search">
+                    <div>
+                        🔍
+                        <input id="homeSearch" type="text" placeholder="Qanday xizmat kerak?">
+                    </div>
+
+                    <select id="homeLocation">
+                        <option value="all">📍 Barcha hududlar</option>
+                        <option value="Chilonzor">Chilonzor</option>
+                        <option value="Yunusobod">Yunusobod</option>
+                        <option value="Sergeli">Sergeli</option>
+                        <option value="Mirzo Ulug'bek">Mirzo Ulug'bek</option>
+                        <option value="Yakkasaroy">Yakkasaroy</option>
+                    </select>
+
+                    <button onclick="homeSearch()">Usta topish</button>
+                </div>
+
+                <div class="statistics">
+                    <div><strong>500+</strong><span>Ustalar</span></div>
+                    <div><strong>1200+</strong><span>Buyurtmalar</span></div>
+                    <div><strong>4.9 ⭐</strong><span>O'rtacha reyting</span></div>
+                </div>
+            </div>
+
+            <div class="home-right">
+                <div class="home-card">
+                    <div class="available">🟢 Hozir mavjud</div>
+                    <div class="big-person"><img src="https://randomuser.me/api/portraits/men/32.jpg" width="140" height="140" alt="Usta" class="image"></div>
+                    <h3>Ishonchli ustalarni toping</h3>
+                    <p>Reytingi va tajribasiga qarab o'zingizga mos ustani tanlang.</p>
+
+                    <div class="small-master">
+                        <div class="avatar"><img src="https://randomuser.me/api/portraits/men/32.jpg" width="50" height="50" alt="Jasur Karimov" class="image"></div>
+                        <div>
+                            <strong>Jasur Karimov ✓</strong>
+                            <span>⚡ Elektrik · ⭐ 4.9</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-services">
+            <div class="section-heading">
+                <div>
+                    <span>XIZMATLAR</span>
+                    <h2>Sizga qanday xizmat kerak?</h2>
+                </div>
+                <a href="#services">Barcha xizmatlar →</a>
+            </div>
+
+            <div class="service-grid">
+                <div class="service-card" onclick="goService('Uy tozalash')">
+                    <div class="service-icon orange">🧹</div>
+                    <h3>Uy tozalash</h3>
+                    <p>Uy va xonalarni professional tozalash</p>
+                </div>
+                <div class="service-card" onclick="goService('Elektrik')">
+                    <div class="service-icon yellow">⚡</div>
+                    <h3>Elektrik</h3>
+                    <p>Elektr tarmoqlarini tuzatish</p>
+                </div>
+                <div class="service-card" onclick="goService('Santexnik')">
+                    <div class="service-icon blue">🚰</div>
+                    <h3>Santexnik</h3>
+                    <p>Quvur, kran va suv tizimlari</p>
+                </div>
+                <div class="service-card" onclick="goService('Konditsioner')">
+                    <div class="service-icon cyan">❄️</div>
+                    <h3>Konditsioner</h3>
+                    <p>O'rnatish va ta'mirlash</p>
+                </div>
+                <div class="service-card" onclick="goService('Remont')">
+                    <div class="service-icon purple">🔨</div>
+                    <h3>Remont</h3>
+                    <p>Uy va ofislarni ta'mirlash</p>
+                </div>
+                <div class="service-card" onclick="goService('Mebel')">
+                    <div class="service-icon pink">🪑</div>
+                    <h3>Mebel</h3>
+                    <p>Mebel yig'ish va ta'mirlash</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="why-section">
+            <div class="section-heading center">
+                <div>
+                    <span>NIMA UCHUN USTATOP?</span>
+                    <h2>Usta chaqirish endi oson</h2>
+                </div>
+            </div>
+
+            <div class="why-grid">
+                <div class="why-card"><div>🔎</div><h3>Oson qidiruv</h3><p>Xizmat va hudud bo'yicha kerakli ustani toping.</p></div>
+                <div class="why-card"><div>⭐</div><h3>Reytinglar</h3><p>Ustalarni reyting va tajribasi bo'yicha ko'ring.</p></div>
+                <div class="why-card"><div>🛡️</div><h3>Ishonchli ustalar</h3><p>Tasdiqlangan mutaxassislarni tanlang.</p></div>
+                <div class="why-card"><div>📋</div><h3>Buyurtmalar</h3><p>Buyurtmalaringizni bir joydan boshqaring.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="page-section page" id="services">
+        <div class="page-header">
+            <span>XIZMATLAR</span>
+            <h1>Barcha xizmatlar</h1>
+            <p>Kerakli xizmatni tanlang va mos ustalarni ko'ring.</p>
+        </div>
+
+        <div class="service-search">
+            🔍
+            <input id="serviceSearch" oninput="searchServices()" type="text" placeholder="Xizmat qidirish...">
+        </div>
+
+        <div class="big-service-grid" id="servicesList"></div>
+    </section>
+
+    <!-- MASTERS -->
+    <section class="page-section page" id="masters">
+        <div class="page-header">
+            <span>USTALAR</span>
+            <h1>Ishonchli ustalar</h1>
+            <p>Xizmat, ism va hudud bo'yicha usta qidiring.</p>
+        </div>
+
+        <div class="master-search">
+            <div class="search-field">
+                🔍
+                <input id="masterSearch" oninput="filterMastersPage()" type="text" placeholder="Usta yoki xizmat...">
+            </div>
+
+            <select id="masterLocation" onchange="filterMastersPage()">
+                <option value="all">Barcha hududlar</option>
+                <option value="Chilonzor">Chilonzor</option>
+                <option value="Yunusobod">Yunusobod</option>
+                <option value="Sergeli">Sergeli</option>
+                <option value="Mirzo Ulug'bek">Mirzo Ulug'bek</option>
+                <option value="Yakkasaroy">Yakkasaroy</option>
+            </select>
+
+            <select id="masterService" onchange="filterMastersPage()">
+                <option value="all">Barcha xizmatlar</option>
+                <option value="Uy tozalash">Uy tozalash</option>
+                <option value="Elektrik">Elektrik</option>
+                <option value="Santexnik">Santexnik</option>
+                <option value="Konditsioner">Konditsioner</option>
+                <option value="Remont">Remont</option>
+                <option value="Mebel">Mebel</option>
+            </select>
+        </div>
+
+        <div class="masters-grid" id="mastersList"></div>
+    </section>
+
+    <!-- ORDERS -->
+    <section class="page-section page" id="orders">
+        <div class="page-header">
+            <span>BUYURTMALAR</span>
+            <h1>Buyurtmalarim</h1>
+            <p>Buyurtmalaringizni ko'ring va kerak bo'lsa bekor qiling.</p>
+        </div>
+
+        <div class="order-tabs">
+            <button class="order-tab active" onclick="showOrders('all', this)">Barchasi</button>
+            <button class="order-tab" onclick="showOrders('active', this)">Faol</button>
+            <button class="order-tab" onclick="showOrders('cancelled', this)">Bekor qilingan</button>
+        </div>
+
+        <div class="orders-page-list" id="ordersPageList"></div>
+    </section>
+
+    <!-- MASTER INCOMING ORDERS -->
+    <section class="page-section page" id="master-orders">
+        <div class="page-header">
+            <span>USTALAR UCHUN</span>
+            <h1>Kelgan buyurtmalar</h1>
+            <p>Qaysi mijoz qaysi manzildan chaqirganini shu yerda ko'rish mumkin.</p>
+        </div>
+
+        <div class="master-panel">
+            <div>
+                <label>Ustani tanlang</label>
+                <select id="incomingMaster" onchange="displayMasterIncomingOrders()"></select>
+            </div>
+            <div class="panel-note">💡 Bu loyiha backend'siz ishlaydi: ma'lumotlar shu brauzerning localStorage'ida saqlanadi.</div>
+        </div>
+
+        <div id="masterIncomingList" class="orders-page-list"></div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div>
+            <div class="logo footer-logo">
+                <div class="logo-icon">🔧</div>
+                <div><h2>UstaTop</h2><span>Ustani oson toping</span></div>
+            </div>
+            <p>Uy uchun kerakli barcha xizmatlar bir joyda.</p>
+        </div>
+
+        <div>
+            <h3>Sayt</h3>
+            <a href="#home">Bosh sahifa</a>
+            <a href="#services">Xizmatlar</a>
+            <a href="#masters">Ustalar</a>
+            <a href="#orders">Buyurtmalar</a>
+        </div>
+
+        <div>
+            <h3>Xizmatlar</h3>
+            <a href="#services">Uy tozalash</a>
+            <a href="#services">Elektrik</a>
+            <a href="#services">Santexnik</a>
+            <a href="#services">Remont</a>
+        </div>
+
+        <div>
+            <h3>Bog'lanish</h3>
+            <p>📞 +998 90 123 45 67</p>
+            <p>📍 Toshkent</p>
+            <p>✉️ info@ustatop.uz</p>
+        </div>
+    </div>
+
+    <div class="copyright">© 2026 UstaTop. Barcha huquqlar himoyalangan.</div>
+</footer>
+
+<!-- LOGIN -->
+<div class="modal" id="loginModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-icon">👋</div>
+        <h2>Xush kelibsiz!</h2>
+        <p>Hisobingizga kiring</p>
+
+        <label>Ism</label>
+        <input id="loginName" type="text" placeholder="Ismingiz">
+
+        <label>Parol</label>
+        <input id="loginPassword" type="password" placeholder="Parolingiz">
+
+        <button class="main-modal-button" onclick="login()">Kirish</button>
+
+        <div class="modal-switch">
+            Hisobingiz yo'qmi?
+            <span onclick="openRegister()">Ro'yxatdan o'tish</span>
+        </div>
+    </div>
+</div>
+
+<!-- REGISTER -->
+<div class="modal" id="registerModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-icon">👤</div>
+        <h2>Hisob yaratish</h2>
+        <p>Kim sifatida qo'shilasiz?</p>
+
+        <div class="role-picker">
+            <label class="role-card">
+                <input type="radio" name="role" value="customer" checked onchange="toggleRole()">
+                <div><span>🙋</span><b>Haridor</b><small>Usta qidiraman</small></div>
+            </label>
+            <label class="role-card">
+                <input type="radio" name="role" value="master" onchange="toggleRole()">
+                <div><span>👨‍🔧</span><b>Usta</b><small>Buyurtma olaman</small></div>
+            </label>
+        </div>
+
+        <label>Ism</label>
+        <input id="registerName" type="text" placeholder="Ismingiz">
+
+        <label>Telefon</label>
+        <input id="registerPhone" type="text" placeholder="+998 90 123 45 67">
+
+        <label>Parol</label>
+        <input id="registerPassword" type="password" placeholder="Parol">
+
+        <div id="masterFields" style="display:none">
+            <label>Xizmat turi</label>
+            <select id="regService">
+                <option>Uy tozalash</option><option>Elektrik</option><option>Santexnik</option>
+                <option>Konditsioner</option><option>Remont</option><option>Mebel</option>
+            </select>
+            <label>Hudud</label>
+            <select id="regLocation">
+                <option>Chilonzor</option><option>Yunusobod</option><option>Sergeli</option>
+                <option>Mirzo Ulug'bek</option><option>Yakkasaroy</option>
+            </select>
+        </div>
+
+        <button class="main-modal-button" onclick="register()">Ro'yxatdan o'tish</button>
+
+        <div class="modal-switch">
+            Hisobingiz bormi?
+            <span onclick="openLogin()">Kirish</span>
+        </div>
+    </div>
+</div>
+
+<!-- ORDER -->
+<div class="modal" id="orderModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-icon">🔧</div>
+        <h2>Usta chaqirish</h2>
+        <p id="orderMasterName">Usta</p>
+
+        <label>Ismingiz *</label>
+        <input id="orderName" type="text" placeholder="Ismingiz">
+
+        <label>Telefon *</label>
+        <input id="orderPhone" type="text" placeholder="+998 90 123 45 67">
+
+        <label>Manzil *</label>
+        <input id="orderAddress" type="text" placeholder="Masalan: Chilonzor, 12-uy">
+
+        <label>Sana *</label>
+        <input id="orderDate" type="date">
+
+        <label>Vaqt</label>
+        <input id="orderTime" type="time">
+
+        <label>Izoh</label>
+        <textarea id="orderComment" rows="4" placeholder="Muammo haqida qisqacha yozing..."></textarea>
+
+        <div class="order-buttons">
+            <button class="cancel-button" onclick="closeModal()">Bekor qilish</button>
+            <button class="main-modal-button" onclick="createOrder()">Buyurtma berish</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
